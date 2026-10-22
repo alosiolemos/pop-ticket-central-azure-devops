@@ -40,7 +40,7 @@ flowchart LR
 
 O desenho representa a entrega descrita; o código do backend e das funções de integração não está incluído nos materiais recuperados.
 
-![Central de Tickets POP](assets/screenshots/central-tickets-pop.png)
+![Central de Tickets POP](assets/screenshots/assetsscreenshotscentral-tickets-pop.png)
 
 ## Protótipo navegável
 
