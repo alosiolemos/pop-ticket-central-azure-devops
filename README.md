@@ -1,6 +1,5 @@
 # Central de Tickets POP | Azure DevOps + IA
 
-![Central de Tickets POP](assets/screenshots/central-tickets-pop.png)
 
 Desenvolvi esta central em conjunto com a diretoria para organizar a abertura, classificação e acompanhamento de demandas de Operações, Tecnologia e Produto. O POP passou a concentrar a experiência do solicitante, enquanto o Azure DevOps permaneceu como ferramenta de execução técnica.
 
@@ -40,6 +39,8 @@ flowchart LR
 ```
 
 O desenho representa a entrega descrita; o código do backend e das funções de integração não está incluído nos materiais recuperados.
+
+![Central de Tickets POP](assets/screenshots/central-tickets-pop.png)
 
 ## Protótipo navegável
 
