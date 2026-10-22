@@ -1,0 +1,1959 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary": "#003921",
+                        "on-tertiary-fixed": "#410004",
+                        "tertiary": "#ffbfba",
+                        "on-primary": "#003919",
+                        "background": "#131313",
+                        "secondary": "#ceffdf",
+                        "inverse-primary": "#006d37",
+                        "tertiary-container": "#ff968f",
+                        "surface-container": "#201f1f",
+                        "surface-tint": "#4ae183",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#50ffaf",
+                        "primary-container": "#2ecc71",
+                        "error": "#ffb4ab",
+                        "outline": "#869486",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#900013",
+                        "on-secondary-container": "#006b43",
+                        "surface": "#131313",
+                        "on-primary-fixed-variant": "#005228",
+                        "inverse-on-surface": "#313030",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "outline-variant": "#3d4a3e",
+                        "on-surface-variant": "#bbcbbb",
+                        "secondary-container": "#01f5a0",
+                        "primary": "#2ecc71",
+                        "secondary-fixed-dim": "#00e293",
+                        "primary-fixed": "#6bfe9c",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary": "#68000b",
+                        "on-tertiary-fixed-variant": "#930014",
+                        "tertiary-fixed": "#ffdad7",
+                        "on-secondary-fixed-variant": "#005232",
+                        "on-primary-container": "#005027",
+                        "surface-bright": "#393939",
+                        "on-primary-fixed": "#00210c",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#4ae183",
+                        "surface-container-highest": "#353534",
+                        "on-secondary-fixed": "#002111",
+                        "surface-variant": "#353534",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-page": "24px",
+                        "density-compact": "8px",
+                        "unit": "4px",
+                        "card-padding": "16px",
+                        "gutter": "12px"
+                    },
+                    "fontFamily": {
+                        "status-tag": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "status-tag": ["11px", {"lineHeight": "12px", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(134, 148, 134, 0.2); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(134, 148, 134, 0.4); }
+        
+        .hidden-view { display: none !important; }
+        .ticket-row { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid transparent; }
+        .truncate-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* Fix Light Mode Contrast */
+        html:not(.dark) { background-color: #F3F4F6; color: #111827; }
+        html:not(.dark) .bg-surface-container-lowest { background-color: #F9FAFB; }
+        html:not(.dark) .bg-surface { background-color: #FFFFFF; }
+        html:not(.dark) .bg-surface-container, 
+        html:not(.dark) .bg-surface-container-low { background-color: #FFFFFF; }
+        html:not(.dark) .text-on-surface { color: #111827; }
+        html:not(.dark) .text-on-surface-variant { color: #4B5563; }
+        html:not(.dark) .border-outline-variant { border-color: #E5E7EB; }
+        html:not(.dark) .ticket-row:hover { background-color: #F9FAFB; }
+        html:not(.dark) .bg-background { background-color: #F3F4F6; }
+        
+        .dark .bg-surface-container { background-color: #1C1C1C; }
+        .dark .bg-surface-container-low { background-color: #161616; }
+        .dark .text-on-surface-variant { color: #A8ADB4; }
+        .dark .border-outline-variant { border-color: rgba(255, 255, 255, 0.08); }
+
+        .overlay-panel {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .overlay-panel.active { display: flex; }
+        
+        .panel-container {
+            width: 100%;
+            max-width: 1080px;
+            height: 85vh;
+            background: theme('colors.surface');
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .new-ticket-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 101;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .new-ticket-overlay.active { display: flex; }
+        
+        .new-ticket-container {
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 24px;
+            position: relative; 
+        }
+
+        .new-ticket-container select {
+            position: relative;
+            z-index: 1;
+        }
+
+        .sector-card:hover { border-color: theme('colors.primary'); transform: translateY(-2px); }
+        .flow-step { display: none; }
+        .flow-step.active { display: block; }
+
+        .rich-editor-toolbar button { padding: 4px; border-radius: 4px; color: theme('colors.on-surface-variant'); transition: all 0.2s; }
+        .rich-editor-toolbar button:hover { background: theme('colors.surface-container-high'); color: theme('colors.on-surface'); }
+
+        .import-step { transition: opacity 0.3s; }
+        .import-step.inactive { opacity: 0.3; pointer-events: none; }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .attachment-item:hover { background: theme('colors.surface-container-high'); }
+        .drag-handle { cursor: grab; opacity: 0.3; transition: opacity 0.2s; }
+        .drag-handle:hover { opacity: 1; }
+    </style>
+<style>
+  html:not(.dark) {
+    --background: #F9FAFB;
+    --surface: #FFFFFF;
+    --on-surface: #111827;
+    --on-surface-variant: #4B5563;
+    --outline: #D1D5DB;
+    --outline-variant: #E5E7EB;
+  }
+
+  html:not(.dark) body {
+    background-color: #F9FAFB;
+    color: #111827;
+  }
+
+  html:not(.dark) .bg-primary {
+    background-color: #059669 !important;
+  }
+
+  html:not(.dark) .text-primary {
+    color: #047857 !important;
+  }
+
+  html:not(.dark) .ticket-row:hover {
+    background-color: #F3F4F6 !important;
+  }
+
+  html:not(.dark) input,
+  html:not(.dark) select,
+  html:not(.dark) textarea {
+    border-color: #D1D5DB !important;
+    color: #111827 !important;
+    background-color: #FFFFFF !important;
+  }
+
+  html:not(.dark) .sector-tab.text-primary {
+    color: #111827 !important;
+    border-color: #10B981 !important;
+  }
+
+  html:not(.dark) .bg-surface {
+    background-color: #FFFFFF !important;
+  }
+
+  html:not(.dark) .bg-surface-container-lowest {
+    background-color: #F3F4F6 !important;
+  }
+
+  html:not(.dark) .border-outline-variant {
+    border-color: #E5E7EB !important;
+  }
+</style></head>
+<body class="font-body-sm text-body-sm flex h-screen overflow-hidden transition-colors duration-200 bg-background text-on-surface"><div style="padding:10px;background:#183b2a;color:#fff;text-align:center;font:13px sans-serif">PROTÓTIPO HISTÓRICO · Dados fictícios · Alterações apenas em memória · Sem conexão com APIs</div>
+<!-- Ticket Detail Azure Style Modal -->
+<div class="overlay-panel" id="ticket-detail-panel">
+<div class="panel-container bg-surface overflow-hidden rounded-[0.75rem] border border-outline-variant">
+<!-- Modal Header -->
+<header class="h-20 border-b border-outline-variant px-8 flex items-center justify-between shrink-0 bg-surface/80 backdrop-blur-md z-10">
+<div class="flex items-center gap-6 min-w-0">
+<div class="flex flex-col">
+<span class="text-label-caps font-bold text-primary mb-0.5 tracking-[0.1em]" id="detail-id">#TK-4832</span>
+<h2 class="font-headline-md truncate text-on-surface text-xl uppercase" id="detail-title">RTN - VALIDAÇÃO DE NOVO ENDPOINT DE API DE PAGAMENTOS</h2>
+</div>
+<div id="detail-sector-badge-container"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span></div>
+</div>
+<div class="flex items-center gap-4 shrink-0">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-[11px] uppercase tracking-widest transition-all bg-yellow-500/10 text-yellow-500 border-yellow-500/20 shadow-sm" id="validation-status-btn" onclick="cycleValidationState(this)">
+<span class="material-symbols-outlined !text-[18px]" id="validation-icon">hourglass_empty</span>
+<span class="" id="validation-label">EM VALIDAÇÃO</span>
+</button>
+<div class="w-px h-8 bg-outline-variant mx-2"></div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant" onclick="closeDetail()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</header>
+<!-- Modal Body -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-8">
+<div class="flex flex-wrap items-center gap-x-10 gap-y-4 px-6 py-5 mb-10 border border-outline-variant/30 bg-surface-container-lowest/50 rounded-[0.5rem]">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant opacity-60">Responsável</span>
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold" id="detail-initials">MV</div>
+<span class="text-[13px] font-semibold text-on-surface" id="detail-responsible">Pessoa 01</span>
+</div>
+</div>
+<div class="h-8 w-px bg-outline-variant/20 hidden md:block"></div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant opacity-60">Cliente</span>
+<span class="text-[13px] font-bold text-on-surface" id="detail-client">Cliente A</span>
+</div>
+<div class="h-8 w-px bg-outline-variant/20 hidden md:block"></div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant opacity-60">ID XM</span>
+<span class="text-[13px] font-mono opacity-80" id="detail-xm-id">9021-SF</span>
+</div>
+<div class="h-8 w-px bg-outline-variant/20 hidden md:block"></div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant opacity-60">Conta POP</span>
+<span class="text-[13px] font-medium" id="detail-account">Conta demonstrativa 01</span>
+</div>
+<div class="flex flex-col gap-1 ml-auto">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant opacity-60">Azure ID</span>
+<span class="text-[13px] text-primary font-bold font-mono" id="detail-azure-id">--</span>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-10">
+<div class="col-span-12 lg:col-span-7 space-y-10">
+<section class="space-y-4">
+<h4 class="text-label-caps font-bold text-on-surface flex items-center gap-2 tracking-widest opacity-80">
+<span class="material-symbols-outlined !text-[18px]">description</span> DESCRIÇÃO
+                            </h4>
+<div class="bg-surface-container-low p-8 rounded-[0.75rem] border border-outline-variant/40 text-[14px] leading-relaxed text-on-surface/90 shadow-inner min-h-[160px]" id="detail-desc">Necessário validar a documentação e os limites de taxa para o novo endpoint de liquidação instantânea.</div>
+</section>
+<section class="space-y-4">
+<h4 class="text-label-caps font-bold text-on-surface flex items-center gap-2 tracking-widest opacity-80">
+<span class="material-symbols-outlined !text-[18px]">forum</span> COMENTÁRIOS &amp; NOTAS
+                            </h4>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-5 rounded-[0.5rem] border border-outline-variant/30">
+<div class="flex justify-between mb-3">
+<span class="text-[12px] font-bold text-primary">Pessoa 08</span>
+<span class="text-[11px] text-on-surface-variant">Hoje às 09:15</span>
+</div>
+<p class="text-[13px] text-on-surface-variant leading-relaxed">Verifiquei os logs do CloudWatch e o timeout parece estar ocorrendo no microserviço de autenticação legado após a última atualização de patch.</p>
+</div>
+<div class="flex gap-4">
+<textarea class="flex-1 bg-surface-container-low border-outline-variant/50 rounded-[0.5rem] text-[13px] py-4 px-5 focus:ring-1 focus:ring-primary focus:border-primary text-on-surface placeholder:text-on-surface-variant/50 transition-all" placeholder="Adicionar uma nota técnica ou atualização..." rows="2"></textarea>
+<button class="bg-primary/10 text-primary w-14 rounded-[0.5rem] hover:bg-primary/20 transition-colors flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<div class="col-span-12 lg:col-span-5 space-y-10">
+<section class="space-y-4">
+<h4 class="text-label-caps font-bold text-on-surface flex items-center gap-2 tracking-widest opacity-80">
+<span class="material-symbols-outlined !text-[18px]">attachment</span> EVIDÊNCIAS &amp; LOGS
+                            </h4>
+<div class="grid grid-cols-1 gap-4">
+<div class="attachment-item flex items-center gap-4 p-5 bg-surface-container-low border border-outline-variant/40 rounded-[0.5rem] cursor-pointer transition-all hover:border-primary/30">
+<div class="w-12 h-12 bg-error/10 text-error flex items-center justify-center rounded-[0.25rem]">
+<span class="material-symbols-outlined text-[28px]">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[13px] font-bold truncate text-on-surface">error_log_prod_0405.pdf</p>
+<p class="text-[11px] text-on-surface-variant">2.4 MB • Ontem às 14:30</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-40">download</span>
+</div>
+<div class="border-2 border-dashed border-outline-variant/40 rounded-[0.5rem] p-8 flex flex-col items-center justify-center bg-surface-container-low/30 hover:bg-surface-container-low/60 hover:border-primary/40 transition-all cursor-pointer group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary mb-2 text-3xl">add_a_photo</span>
+<span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest group-hover:text-on-surface">Anexar Nova Evidência</span>
+</div>
+</div>
+</section>
+<div class="pt-8 border-t border-outline-variant/30 flex flex-col gap-4">
+<button class="w-full bg-primary text-on-primary-container py-4 rounded-[0.5rem] font-bold uppercase text-[11px] tracking-widest hover:brightness-105 active:scale-[0.98] transition-all shadow-lg shadow-primary/10">Salvar Alterações</button>
+<button class="w-full bg-surface-container-highest border border-outline-variant text-on-surface py-4 rounded-[0.5rem] font-bold uppercase text-[11px] tracking-widest hover:bg-surface-container-low transition-all">Transferir Responsabilidade</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- New Ticket Overlay -->
+<div class="new-ticket-overlay p-6" id="new-ticket-overlay">
+<div class="new-ticket-container bg-surface border border-outline-variant shadow-2xl flex flex-col custom-scrollbar">
+<div class="px-8 py-6 border-b border-outline-variant flex justify-between items-center sticky top-0 bg-surface z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-[0.25rem] bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" id="flow-header-icon">add_task</span>
+</div>
+<div>
+<h2 class="text-headline-md leading-none" id="flow-title">Novo Ticket</h2>
+<p class="text-on-surface-variant text-[11px] font-bold uppercase tracking-widest mt-1 opacity-70" id="flow-subtitle">Selecione o setor responsável</p>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors" onclick="closeFlow()"><span class="material-symbols-outlined text-on-surface-variant">close</span></button>
+</div>
+<!-- Step: Sector Selection -->
+<div class="flow-step p-8 active" id="step-sector">
+<div class="grid grid-cols-1 gap-4">
+<button class="sector-card flex items-center gap-6 p-6 bg-surface-container-low border border-outline-variant rounded-[0.5rem] text-left transition-all group" onclick="goToStep('tecnologia')">
+<div class="w-12 h-12 rounded-[0.5rem] bg-surface flex items-center justify-center border border-outline-variant group-hover:bg-primary/10 group-hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-2xl">developer_mode_tv</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-lg text-on-surface">TECNOLOGIA</h3>
+<p class="text-on-surface-variant text-body-sm">Bugs, infraestrutura, acesso a sistemas e requisições técnicas.</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-40 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="sector-card flex items-center gap-6 p-6 bg-surface-container-low border border-outline-variant rounded-[0.5rem] text-left transition-all group" onclick="goToStep('produto-hub')">
+<div class="w-12 h-12 rounded-[0.5rem] bg-surface flex items-center justify-center border border-outline-variant group-hover:bg-primary/10 group-hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-2xl">inventory_2</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-lg text-on-surface">PRODUTO</h3>
+<p class="text-on-surface-variant text-body-sm">Sugestão de melhorias, novas features</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-40 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="sector-card flex items-center gap-6 p-6 bg-surface-container-low border border-outline-variant rounded-[0.5rem] text-left transition-all group" onclick="goToStep('bi')">
+<div class="w-12 h-12 rounded-[0.5rem] bg-surface flex items-center justify-center border border-outline-variant group-hover:bg-primary/10 group-hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-2xl">analytics</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-lg text-on-surface">BUSINESS INTELLIGENCE</h3>
+<p class="text-on-surface-variant text-body-sm">Extração de dados, dashboards, relatórios e análise preditiva.</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-40 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Step: Technology Form -->
+<div class="flow-step p-8" id="step-form-tecnologia">
+<div class="space-y-6">
+<div class="flex items-center gap-2 mb-2">
+<button class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" onclick="backToSector()">
+<span class="material-symbols-outlined !text-[14px]">arrow_back</span> Voltar
+                        </button>
+</div>
+<form class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1.5 md:col-span-1">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Título</label>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-on-surface border-outline" placeholder="Resumo curto do bug..." type="text">
+</div>
+<div class="space-y-1.5 md:col-span-1">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Tipo de Solicitação</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface focus:ring-1 focus:ring-primary appearance-none border-outline">
+<option value="QST">QST (Questionamento)</option>
+<option value="RTN">RTN (Rotina)</option>
+<option value="BUG">BUG (Erro)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant opacity-50">expand_more</span>
+</div>
+</div>
+<div class="space-y-1.5 md:col-span-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">O que não está funcionando? (Descrição)</label>
+<textarea class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-on-surface border-outline" placeholder="Descreva detalhadamente o comportamento inesperado..." rows="3"></textarea>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Cliente (Portfólio)</label>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface border-outline" placeholder="Ex: Cliente A, Cliente B..." type="text">
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">ID da Empresa (ID XM)</label>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface border-outline" placeholder="Ex: 5829..." type="text">
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Nome da Conta</label>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface border-outline" placeholder="Ex: Conta demonstrativa 04" type="text">
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Quem identificou o bug?</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface focus:ring-1 focus:ring-primary appearance-none border-outline">
+<option>Cliente</option>
+<option>CS (Customer Success)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant opacity-50">expand_more</span>
+</div>
+</div>
+<div class="space-y-1.5 md:col-span-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Dados Específicos (Ação, Relatório, Filtro, etc.)</label>
+<textarea class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface border-outline" placeholder="Quais dados foram usados para reproduzir?" rows="2"></textarea>
+</div>
+<div class="space-y-1.5 md:col-span-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Evidências</label>
+<div class="border-2 border-dashed border-outline-variant/40 rounded-[0.25rem] p-4 flex flex-col items-center justify-center bg-surface-container-low/30 hover:bg-surface-container-low/60 transition-all cursor-pointer group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary mb-1">upload_file</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Arraste ou clique para anexar</span>
+</div>
+</div>
+<div class="space-y-1.5 md:col-span-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Validações (Testes já realizados)</label>
+<textarea class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface border-outline" placeholder="O que já foi verificado?" rows="2"></textarea>
+</div>
+<div class="space-y-1.5 md:col-span-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Contexto do Cliente (Impacto e Pressão)</label>
+<textarea class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface border-outline" placeholder="Qual a urgência para o cliente?" rows="2"></textarea>
+</div>
+</div>
+</form>
+<div class="pt-6 border-t border-outline-variant flex justify-end gap-3">
+<button class="px-6 py-2.5 rounded-[0.25rem] text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-all" onclick="closeFlow()">Cancelar</button>
+<button class="bg-primary text-on-primary-container px-8 py-2.5 rounded-[0.25rem] text-[10px] font-bold uppercase tracking-widest hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-primary/20">Criar Ticket Tecnologia</button>
+</div>
+</div>
+</div>
+<!-- Step: Product Selection Hub -->
+<div class="flow-step p-8" id="step-produto-hub">
+<div class="flex items-center gap-2 mb-6">
+<button class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" onclick="backToSector()">
+<span class="material-symbols-outlined !text-[14px]">arrow_back</span> Voltar
+                    </button>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<button class="sector-card flex items-center gap-6 p-6 bg-surface-container-low border border-outline-variant rounded-[0.5rem] text-left transition-all group" onclick="goToStep('produto-form')">
+<div class="w-12 h-12 rounded-[0.5rem] bg-surface flex items-center justify-center border border-outline-variant group-hover:bg-primary/10 group-hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-2xl">lightbulb</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-lg text-on-surface">SUGESTÃO</h3>
+<p class="text-on-surface-variant text-body-sm">Propor melhorias ou novas funcionalidades para os produtos.</p>
+</div>
+</button>
+<button class="sector-card flex items-center gap-6 p-6 bg-surface-container-low border border-outline-variant rounded-[0.5rem] text-left transition-all group" onclick="goToStep('importacao-massa')">
+<div class="w-12 h-12 rounded-[0.5rem] bg-surface flex items-center justify-center border border-outline-variant group-hover:bg-primary/10 group-hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-2xl">upload_file</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-lg text-on-surface">IMPORTAÇÃO EM MASSA DE SUGESTÕES</h3>
+<p class="text-on-surface-variant text-body-sm">Upload de arquivos Excel para criação de múltiplos registros.</p>
+</div>
+</button>
+</div>
+</div>
+<!-- Step: Product Suggestion Form -->
+<div class="flow-step p-8" id="step-produto-form">
+<div class="space-y-6">
+<div class="flex items-center gap-2 mb-2">
+<button class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" onclick="goToStep('produto-hub')">
+<span class="material-symbols-outlined !text-[14px]">arrow_back</span> Voltar
+                        </button>
+</div>
+<form class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Caminho (Path)</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface appearance-none border-outline"><option class="" disabled="" selected="" value="">Selecione o caminho...</option><option>Sugestão sem prazo</option><option>Pedido de proposta comercial</option></select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant opacity-50">expand_more</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Produto</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface appearance-none border-outline"><option class="" disabled="" selected="" value="">Selecione o produto...</option><option class="">POP XM</option><option class="">POP HUB</option></select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant opacity-50">expand_more</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Parte do Produto</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface appearance-none border-outline"><option class="" disabled="" selected="" value="">Selecione a parte do produto...</option><option class="" value="Dashboard">Dashboard</option><option class="" value="Admin">Admin</option><option class="" value="Metas">Metas</option><option class="" value="Outros">Outros (Descrever em sugestões)</option></select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant opacity-50">expand_more</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Cliente</label>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface border-outline" placeholder="Nome do cliente..." type="text">
+</div>
+<div class="space-y-1.5 md:col-span-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Título da Sugestão</label>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-[0.25rem] text-xs py-2.5 px-4 text-on-surface border-outline" placeholder="Resumo da melhoria..." type="text">
+</div>
+<div class="space-y-1.5 md:col-span-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant pl-1">Descrição da Sugestão</label>
+<div class="border border-outline-variant rounded-[0.25rem] overflow-hidden bg-surface-container-low">
+<div class="rich-editor-toolbar flex items-center gap-1 p-2 border-b border-outline-variant bg-surface-container-high">
+<button class="" type="button"><span class="material-symbols-outlined !text-[18px]">format_bold</span></button>
+<button class="" type="button"><span class="material-symbols-outlined !text-[18px]">format_italic</span></button>
+<button class="" type="button"><span class="material-symbols-outlined !text-[18px]">format_list_bulleted</span></button>
+<button class="" type="button"><span class="material-symbols-outlined !text-[18px]">link</span></button>
+<button class="" type="button"><span class="material-symbols-outlined !text-[18px]">image</span></button>
+<button class="" type="button"><span class="material-symbols-outlined !text-[18px]">code</span></button>
+</div>
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-xs py-3 px-4 text-on-surface border-outline" placeholder="Descreva detalhadamente sua sugestão..." rows="5"></textarea>
+</div>
+</div>
+</div>
+</form>
+<div class="pt-6 border-t border-outline-variant flex justify-end gap-3">
+<button class="px-6 py-2.5 rounded-[0.25rem] text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-all" onclick="closeFlow()">Cancelar</button>
+<button class="bg-primary text-on-primary-container px-8 py-2.5 rounded-[0.25rem] text-[10px] font-bold uppercase tracking-widest hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-primary/20">Enviar Sugestão</button>
+</div>
+</div>
+</div>
+<!-- Step: Mass Import Flow -->
+<div class="flow-step p-8" id="step-importacao-massa">
+<div class="flex items-center gap-2 mb-6">
+<button class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" onclick="goToStep('produto-hub')">
+<span class="material-symbols-outlined !text-[14px]">arrow_back</span> Voltar
+                    </button>
+</div>
+<div id="import-content-area">
+<div class="space-y-8">
+<div class="flex justify-between items-center px-4">
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-bold">1</div>
+<span class="text-[9px] font-bold uppercase tracking-widest text-primary">Template</span>
+</div>
+<div class="h-px flex-1 bg-outline-variant mt-4 mx-2"></div>
+<div class="flex flex-col items-center gap-2 opacity-40">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[10px] font-bold">2</div>
+<span class="text-[9px] font-bold uppercase tracking-widest">Upload</span>
+</div>
+<div class="h-px flex-1 bg-outline-variant mt-4 mx-2"></div>
+<div class="flex flex-col items-center gap-2 opacity-40">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[10px] font-bold">3</div>
+<span class="text-[9px] font-bold uppercase tracking-widest">Validar</span>
+</div>
+<div class="h-px flex-1 bg-outline-variant mt-4 mx-2"></div>
+<div class="flex flex-col items-center gap-2 opacity-40">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[10px] font-bold">4</div>
+<span class="text-[9px] font-bold uppercase tracking-widest">Fim</span>
+</div>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-[0.5rem] p-8 text-center space-y-4">
+<div class="w-16 h-16 bg-primary/10 text-primary rounded-[0.25rem] flex items-center justify-center mx-auto">
+<span class="material-symbols-outlined text-4xl">description</span>
+</div>
+<h4 class="font-bold text-on-surface">Baixar Template de Importação</h4>
+<p class="text-on-surface-variant text-xs max-w-xs mx-auto">Utilize nosso modelo Excel padronizado para garantir que seus dados sejam processados corretamente.</p>
+<button class="flex items-center gap-2 mx-auto px-6 py-3 bg-surface-container-highest border border-outline-variant rounded-[0.25rem] hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-primary">download</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Download .XLSX</span>
+</button>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant flex justify-end gap-3" id="import-actions">
+<button class="px-6 py-2.5 rounded-[0.25rem] text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-all" onclick="closeFlow()">Cancelar</button>
+<button class="bg-surface-container-highest text-on-surface px-8 py-2.5 rounded-[0.25rem] text-[10px] font-bold uppercase tracking-widest opacity-50 cursor-not-allowed" id="btn-imp-next">Próximo</button>
+</div>
+</div>
+<!-- Step: Placeholder (BI) -->
+<div class="flow-step p-12 text-center" id="step-bi">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant/20 mb-4">construction</span>
+<h3 class="text-headline-md mb-2">Em breve</h3>
+<p class="text-on-surface-variant max-w-sm mx-auto mb-8 font-medium">Estamos aprimorando o formulário específico para este setor.</p>
+<button class="px-8 py-3 rounded-[0.25rem] border border-outline-variant text-[10px] font-bold uppercase tracking-widest text-on-surface hover:bg-surface-container-low transition-all" onclick="backToSector()">Voltar</button>
+</div>
+</div>
+</div>
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center w-full px-margin-page h-16 bg-surface border-b border-outline-variant shrink-0 sticky top-0 z-40 backdrop-blur-md bg-opacity-90 text-on-surface">
+<div class="flex items-center gap-10">
+<div class="flex items-center">
+<span aria-label="Avatar demonstrativo" style="display:inline-block;width:32px;height:32px;border-radius:50%;background:#2ecc71"></span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-1 items-center bg-surface-container-low p-1 rounded-full border border-outline-variant">
+<button class="p-2 hover:bg-surface-bright/10 rounded-full transition-colors text-on-surface-variant hover:text-on-surface" id="theme-toggle" title="Alternar Tema">
+<span class="material-symbols-outlined dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block">light_mode</span>
+</button>
+<button class="p-2 hover:bg-surface-bright/10 rounded-full transition-colors text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">mail</span></button>
+<button class="p-2 hover:bg-surface-bright/10 rounded-full transition-colors text-on-surface-variant hover:text-on-surface relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-1.5 h-1.5 bg-primary rounded-full ring-2 ring-surface"></span>
+</button>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
+<div class="text-right hidden sm:block">
+<p class="text-body-sm font-bold leading-none text-on-surface">Pessoa 08</p>
+<p class="text-[10px] text-on-surface-variant font-medium mt-1 uppercase tracking-wider">Ops Manager</p>
+</div>
+<div class="relative">
+<span aria-label="Avatar demonstrativo" style="display:inline-block;width:32px;height:32px;border-radius:50%;background:#2ecc71"></span>
+</div>
+</div>
+</div>
+</header>
+<!-- Sector Navigation Tabs -->
+<nav class="bg-surface border-b border-outline-variant px-margin-page flex items-center gap-8 h-12 shrink-0 sticky top-16 z-30 overflow-x-auto custom-scrollbar whitespace-nowrap text-on-surface">
+<button class="sector-tab h-full px-1 border-b-2 font-bold text-[11px] uppercase tracking-widest transition-all border-primary text-primary" data-tab="solicitacoes">Solicitações</button>
+<button class="sector-tab h-full px-1 border-b-2 hover:text-on-surface font-bold text-[11px] uppercase tracking-widest transition-all border-transparent text-on-surface-variant" data-tab="tecnologia">Tecnologia</button>
+<button class="sector-tab h-full px-1 border-b-2 hover:text-on-surface font-bold text-[11px] uppercase tracking-widest transition-all border-transparent text-on-surface-variant" data-tab="produto">Produto</button>
+<button class="sector-tab h-full px-1 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-bold text-[11px] uppercase tracking-widest transition-all" data-tab="bi">Business Intelligence</button>
+</nav>
+<div class="flex-1 overflow-y-auto custom-scrollbar bg-surface-container-lowest bg-background">
+<!-- TAB: SOLICITAÇÕES (DEFAULT) -->
+<div class="tab-pane active" id="pane-solicitacoes">
+<div class="px-margin-page pt-10 pb-10 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+<div class="space-y-1">
+<h1 class="font-headline-lg text-[32px] text-on-surface leading-tight">Central de Tickets</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl font-medium">Gestão inteligente de incidentes e solicitações corporativas.</p>
+<button class="mt-2 flex items-center gap-1.5 text-[10px] font-bold text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest" id="toggle-metrics">
+<span class="material-symbols-outlined !text-[14px] transition-transform duration-300" id="metrics-chevron" style="transform: rotate(0deg);">expand_more</span>
+<span class="" id="metrics-toggle-text">Mostrar Indicadores</span>
+</button>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex bg-surface border border-outline-variant p-1 rounded-[0.5rem] shadow-sm">
+<button class="view-toggle px-5 py-2 flex items-center gap-2 font-bold rounded-[0.25rem] transition-all hover:text-on-surface text-on-surface-variant bg-primary/10 text-primary shadow-sm" data-view="list">
+<span class="material-symbols-outlined !text-[20px]">list</span>
+<span class="text-label-caps">Lista</span>
+</button>
+<button class="view-toggle px-5 py-2 flex items-center gap-2 font-bold rounded-[0.25rem] transition-all text-on-surface-variant" data-view="kanban">
+<span class="material-symbols-outlined !text-[20px]">view_kanban</span>
+<span class="text-label-caps">Kanban</span>
+</button>
+</div>
+<button class="flex items-center gap-2 bg-primary text-on-primary-container px-6 py-3 rounded-[0.5rem] font-bold hover:shadow-lg hover:shadow-primary/20 hover:brightness-105 active:scale-[0.98] transition-all hover:brightness-90" id="new-ticket-btn">
+<span class="material-symbols-outlined !text-[20px]">add</span>
+<span class="text-body-sm font-bold uppercase tracking-wide">Novo Ticket</span>
+</button>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-margin-page mb-10 transition-all duration-300 origin-top hidden" id="metrics-panel">
+<div class="bg-surface border border-outline-variant p-6 rounded-[0.75rem] shadow-sm"><div class="flex justify-between items-start mb-6"><div class="p-2.5 bg-primary/10 rounded-[0.5rem]"><span class="material-symbols-outlined text-primary text-[24px]">confirmation_number</span></div><span class="text-[12px] font-bold text-primary flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">trending_up</span> 12.4%</span></div><p class="text-label-caps text-on-surface-variant uppercase tracking-widest text-[10px]">Total de Tickets</p><h2 class="text-3xl font-bold font-headline-lg text-on-surface">1,284</h2></div>
+<div class="bg-surface border border-outline-variant p-6 rounded-[0.75rem] shadow-sm"><div class="flex justify-between items-start mb-6"><div class="p-2.5 bg-primary/10 rounded-[0.5rem]"><span class="material-symbols-outlined text-primary text-[24px]">timer</span></div><span class="text-[12px] font-bold text-error flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">trending_down</span> 5.2%</span></div><p class="text-label-caps text-on-surface-variant uppercase tracking-widest text-[10px]">Tempo Médio</p><h2 class="text-3xl font-bold font-headline-lg text-on-surface">14 min</h2></div>
+<div class="bg-surface border border-outline-variant p-6 rounded-[0.75rem] shadow-sm"><div class="flex justify-between items-start mb-6"><div class="p-2.5 bg-primary/10 rounded-[0.5rem]"><span class="material-symbols-outlined text-primary text-[24px]">check_circle</span></div><span class="text-[12px] font-bold text-primary flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">trending_up</span> 8.1%</span></div><p class="text-label-caps text-on-surface-variant uppercase tracking-widest text-[10px]">Resolvidos</p><h2 class="text-3xl font-bold font-headline-lg text-on-surface">942</h2></div>
+<div class="bg-surface border border-outline-variant p-6 rounded-[0.75rem] shadow-sm"><div class="flex justify-between items-start mb-6"><div class="p-2.5 bg-primary/10 rounded-[0.5rem]"><span class="material-symbols-outlined text-primary text-[24px]">sentiment_satisfied</span></div><span class="text-[12px] font-bold text-primary flex items-center gap-1"><span class="material-symbols-outlined !text-[16px]">trending_up</span> 2.4%</span></div><p class="text-label-caps text-on-surface-variant uppercase tracking-widest text-[10px]">Satisfação</p><h2 class="text-3xl font-bold font-headline-lg text-on-surface">4.8/5</h2></div>
+</div>
+<div class="px-margin-page pb-16">
+<!-- List View -->
+<div class="flex flex-wrap items-center gap-4 mb-6 px-margin-page">
+<div class="flex-1 min-w-[240px] relative"><span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-50 !text-[20px]">search</span><input class="w-full bg-surface border border-outline-variant rounded-[0.5rem] py-3 pl-12 pr-4 text-xs focus:ring-1 focus:ring-primary focus:border-primary transition-all text-on-surface placeholder:text-on-surface-variant/50 border-outline" placeholder="Buscar tickets por ID, cliente ou título..." type="text"></div>
+<div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 custom-scrollbar"><div class="flex items-center gap-2 px-4 py-2.5 bg-surface border border-outline-variant rounded-[0.5rem] cursor-pointer hover:bg-surface-container-low transition-colors group"><span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Filtros</span><span class="material-symbols-outlined !text-[18px] text-on-surface-variant group-hover:text-primary">filter_list</span></div><select class="bg-surface border border-outline-variant rounded-[0.5rem] py-2.5 px-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant focus:ring-1 focus:ring-primary cursor-pointer hover:bg-surface-container-low transition-colors"><option>Setor: Todos</option><option>Tecnologia</option><option>Produto</option><option>BI</option></select><select class="bg-surface border border-outline-variant rounded-[0.5rem] py-2.5 px-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant focus:ring-1 focus:ring-primary cursor-pointer hover:bg-surface-container-low transition-colors"><option>Tipo: Todos</option><option>RTN</option><option>QST</option><option>BUG</option></select><select class="bg-surface border border-outline-variant rounded-[0.5rem] py-2.5 px-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant focus:ring-1 focus:ring-primary cursor-pointer hover:bg-surface-container-low transition-colors"><option>Status: Todos</option><option>Novo</option><option>Em Análise</option><option>Em Progresso</option><option>Reprovado</option></select></div>
+</div>
+<div class="bg-surface border border-outline-variant rounded-[0.75rem] overflow-hidden shadow-xl" id="view-list-container">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-background border-b border-outline-variant text-label-caps text-on-surface-variant font-bold uppercase tracking-widest text-[10px]">
+<tr>
+<th class="px-10 py-5">Ticket ID</th>
+<th class="px-6 py-5">Setor</th>
+<th class="px-6 py-5">Tipo</th>
+<th class="px-6 py-5">Cliente &amp; Título</th>
+<th class="px-6 py-5">Status</th>
+<th class="px-6 py-5">Responsável</th>
+<th class="px-6 py-5">Prioridade</th>
+<th class="px-10 py-5 text-right">Tempo</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30 text-on-surface" id="tickets-list-body">
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4832')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4832</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-primary">RTN</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente A <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> RTN - Validação de novo endpoint de API de Pagamentos
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Tecnologia / Backend</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-blue-500/10 text-blue-600 dark:text-blue-500 border-blue-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM ANÁLISE</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">MV</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Pessoa 01</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #D9B700;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #D9B700">Média</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">5 min</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4831')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4831</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-blue-400">QST</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente B <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> QST - Ajuste de permissões em ambiente de Staging
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Tecnologia / DevOps</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-blue-500/10 text-blue-600 dark:text-blue-500 border-blue-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM ANÁLISE</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">AL</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Pessoa 02</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #E67E22;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #E67E22">Alta</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">10 min</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4830')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4830</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-error">BUG</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente C <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> BUG - Sincronização de base de dados BI
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Tecnologia / Dados</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-blue-500/10 text-blue-600 dark:text-blue-500 border-blue-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM ANÁLISE</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">RF</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Pessoa 03</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #4ae183;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #4ae183">Baixa</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">15 min</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4829')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4829</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-error">BUG</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente D <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> BUG - Erro na sincronização de API Gateway v2
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Infraestrutura / Cloud</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-blue-500/10 text-blue-600 dark:text-blue-500 border-blue-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM ANÁLISE</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">LC</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Pessoa 04</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #D9B700;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #D9B700">Média</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">12 min</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4825')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4825</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-error">BUG</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente E <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> BUG - Vulnerabilidade crítica detectada em repositório legado
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Segurança / DevOps</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-error/10 text-error border-error/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">REPROVADO</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">AM</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Pessoa 05</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #ffb4ab;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #ffb4ab">Crítica</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">45 min</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4820')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4820</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-secondary-fixed-dim bg-secondary-fixed-dim/10">BI</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-blue-400">QST</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente F <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> QST - Solicitação de novo dashboard de retenção LTV
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Produto / BI</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-primary/10 text-primary border-primary/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM PROGRESSO</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">RF</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Pessoa 03</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #4ae183;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #4ae183">Baixa</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">2 horas</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4818')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4818</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-primary">RTN</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente G <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> RTN - Instabilidade no ambiente de Homologação AWS
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Infraestrutura / Cloud</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-on-surface-variant/10 text-on-surface-variant border-outline-variant px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">NOVO</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">--</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Sem atribuição</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #E67E22;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #E67E22">Alta</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">3 horas</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4815')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4815</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-primary">RTN</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente H <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> RTN - Migração de banco de dados Oracle para PostgreSQL
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Dados / DB Ops</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-blue-500/10 text-blue-600 dark:text-blue-500 border-blue-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM ANÁLISE</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">FJ</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Pessoa 06</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #E67E22;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #E67E22">Alta</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">5 horas</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4812')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4812</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-tertiary bg-tertiary/10">PRODUTO</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-primary">RTN</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente I <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> RTN - Ajuste de workflow no módulo de aprovações
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Configuração</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-primary/10 text-primary border-primary/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM PROGRESSO</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">JS</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Pessoa 07</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #D9B700;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #D9B700">Média</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">6 horas</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4810')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4810</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-secondary-fixed-dim bg-secondary-fixed-dim/10">BI</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-blue-400">QST</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente J <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> QST - Extração mensal de logs de acesso de usuários
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Relatórios</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-on-surface-variant/10 text-on-surface-variant border-outline-variant px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">NOVO</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">--</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Sem atribuição</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #4ae183;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #4ae183">Baixa</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">8 horas</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4809')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4809</td>
+                    <td class="px-6 py-4"><span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span></td>
+                    <td class="px-6 py-4"><span class="font-mono font-bold text-[10px] text-error">BUG</span></td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            Cliente K <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> BUG - Timeout intermitente na autenticação OAuth2
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">Sistemas</p>
+                    </td>
+                    <td class="px-6 py-4"><span class="bg-blue-500/10 text-blue-600 dark:text-blue-500 border-blue-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM ANÁLISE</span></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">MV</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">Pessoa 01</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: #E67E22;"></span><span class="text-[10px] uppercase tracking-tighter" style="color: #E67E22">Alta</span></span></td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">10 horas</td>
+                </tr>
+            </tbody>
+</table>
+</div>
+</div>
+<!-- Kanban View -->
+<div class="flex gap-6 overflow-x-auto pb-8 custom-scrollbar items-start hidden-view" id="view-kanban-container">
+<div class="flex-shrink-0 w-80 space-y-4">
+<div class="flex items-center justify-between px-2 mb-2"><h3 class="text-label-caps font-bold text-on-surface-variant uppercase">Novos</h3><span class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant" id="count-novo">2</span></div>
+<div class="space-y-4" id="kanban-novo"><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4818</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span>
+                                <span class="font-mono font-bold text-[10px] text-primary">RTN</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente G</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">RTN - Instabilidade no ambiente de Homologação AWS</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">--</div>
+                            <span class="text-[11px] font-bold">Sem</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">3 horas</span>
+                    </div>
+                </div><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4810</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-secondary-fixed-dim bg-secondary-fixed-dim/10">BI</span>
+                                <span class="font-mono font-bold text-[10px] text-blue-400">QST</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente J</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">QST - Extração mensal de logs de acesso de usuários</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">--</div>
+                            <span class="text-[11px] font-bold">Sem</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">8 horas</span>
+                    </div>
+                </div></div>
+</div>
+<div class="flex-shrink-0 w-80 space-y-4">
+<div class="flex items-center justify-between px-2 mb-2"><h3 class="text-label-caps font-bold text-on-surface-variant uppercase">EM ANÁLISE</h3><span class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant" id="count-analise">6</span></div>
+<div class="space-y-4" id="kanban-analise"><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4832</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span>
+                                <span class="font-mono font-bold text-[10px] text-primary">RTN</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente A</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">RTN - Validação de novo endpoint de API de Pagamentos</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">MV</div>
+                            <span class="text-[11px] font-bold">Pessoa 01</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">5 min</span>
+                    </div>
+                </div><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4831</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span>
+                                <span class="font-mono font-bold text-[10px] text-blue-400">QST</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente B</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">QST - Ajuste de permissões em ambiente de Staging</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">AL</div>
+                            <span class="text-[11px] font-bold">Pessoa 02</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">10 min</span>
+                    </div>
+                </div><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4830</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span>
+                                <span class="font-mono font-bold text-[10px] text-error">BUG</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente C</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">BUG - Sincronização de base de dados BI</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">RF</div>
+                            <span class="text-[11px] font-bold">Pessoa 03</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">15 min</span>
+                    </div>
+                </div><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4829</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span>
+                                <span class="font-mono font-bold text-[10px] text-error">BUG</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente D</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">BUG - Erro na sincronização de API Gateway v2</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">LC</div>
+                            <span class="text-[11px] font-bold">Pessoa 04</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">12 min</span>
+                    </div>
+                </div><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4815</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span>
+                                <span class="font-mono font-bold text-[10px] text-primary">RTN</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente H</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">RTN - Migração de banco de dados Oracle para PostgreSQL</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">FJ</div>
+                            <span class="text-[11px] font-bold">Pessoa 05</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">5 horas</span>
+                    </div>
+                </div><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4809</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-primary bg-primary/5">TECNOLOGIA</span>
+                                <span class="font-mono font-bold text-[10px] text-error">BUG</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente K</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">BUG - Timeout intermitente na autenticação OAuth2</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">MV</div>
+                            <span class="text-[11px] font-bold">Pessoa 01</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">10 horas</span>
+                    </div>
+                </div></div>
+</div>
+<div class="flex-shrink-0 w-80 space-y-4">
+<div class="flex items-center justify-between px-2 mb-2"><h3 class="text-label-caps font-bold text-on-surface-variant uppercase">Em Progresso</h3><span class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant" id="count-progresso">2</span></div>
+<div class="space-y-4" id="kanban-progresso"><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4820</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-secondary-fixed-dim bg-secondary-fixed-dim/10">BI</span>
+                                <span class="font-mono font-bold text-[10px] text-blue-400">QST</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente F</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">QST - Solicitação de novo dashboard de retenção LTV</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">RF</div>
+                            <span class="text-[11px] font-bold">Pessoa 03</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">2 horas</span>
+                    </div>
+                </div><div class="bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#TK-4812</span>
+                            <div class="flex gap-2">
+                                <span class="font-label-caps text-[10px] px-2 py-0.5 rounded text-tertiary bg-tertiary/10">PRODUTO</span>
+                                <span class="font-mono font-bold text-[10px] text-primary">RTN</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">Cliente I</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">RTN - Ajuste de workflow no módulo de aprovações</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">JS</div>
+                            <span class="text-[11px] font-bold">Pessoa 06</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">6 horas</span>
+                    </div>
+                </div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB: TECNOLOGIA -->
+<div class="tab-pane hidden" id="pane-tecnologia">
+<div class="px-margin-page pt-10 pb-6 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+<div class="space-y-1">
+<h1 class="font-headline-lg text-[32px] text-on-surface leading-tight">Fila de Tecnologia</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl font-medium">Validação técnica e integração com Azure DevOps.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex bg-surface border border-outline-variant p-1 rounded-[0.5rem] shadow-sm">
+<button class="tech-view-toggle px-5 py-2 flex items-center gap-2 font-bold rounded-[0.25rem] transition-all text-on-surface-variant bg-primary/10 text-primary shadow-sm" data-view="list">
+<span class="material-symbols-outlined !text-[20px]">list</span>
+<span class="text-label-caps">Lista Tech</span>
+</button>
+<button class="tech-view-toggle px-5 py-2 flex items-center gap-2 font-bold rounded-[0.25rem] transition-all hover:text-on-surface text-on-surface-variant" data-view="kanban">
+<span class="material-symbols-outlined !text-[20px]">view_kanban</span>
+<span class="text-label-caps">Kanban Tech</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-margin-page pb-16">
+<!-- Tech List View -->
+<div class="flex flex-wrap items-center gap-4 mb-6 px-margin-page">
+<div class="flex-1 min-w-[240px] relative"><span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-50 !text-[20px]">search</span><input class="w-full bg-surface border border-outline-variant rounded-[0.5rem] py-3 pl-12 pr-4 text-xs focus:ring-1 focus:ring-primary focus:border-primary transition-all text-on-surface placeholder:text-on-surface-variant/50" placeholder="Buscar na fila técnica..." type="text"></div>
+<div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 custom-scrollbar"><div class="flex items-center gap-2 px-4 py-2.5 bg-surface border border-outline-variant rounded-[0.5rem] cursor-pointer hover:bg-surface-container-low transition-colors group"><span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Filtros Tech</span><span class="material-symbols-outlined !text-[18px] text-on-surface-variant group-hover:text-primary">tune</span></div><select class="bg-surface border border-outline-variant rounded-[0.5rem] py-2.5 px-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant focus:ring-1 focus:ring-primary cursor-pointer hover:bg-surface-container-low transition-colors"><option>Tipo: Todos</option><option>RTN</option><option>QST</option><option>BUG</option></select><select class="bg-surface border border-outline-variant rounded-[0.5rem] py-2.5 px-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant focus:ring-1 focus:ring-primary cursor-pointer hover:bg-surface-container-low transition-colors"><option>Status: Todos</option><option>Aguardando Validação</option><option>Em Validação</option><option>Validado</option><option>Reprovado</option></select><select class="bg-surface border border-outline-variant rounded-[0.5rem] py-2.5 px-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant focus:ring-1 focus:ring-primary cursor-pointer hover:bg-surface-container-low transition-colors"><option>Responsável: Todos</option><option>Pessoa 01</option><option>Pessoa 02</option><option>Pessoa 03</option></select></div>
+</div>
+<div class="bg-surface border border-outline-variant rounded-[0.75rem] overflow-hidden shadow-xl" id="tech-list-container">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-background border-b border-outline-variant text-label-caps text-on-surface-variant font-bold uppercase tracking-widest text-[10px]">
+<tr>
+<th class="px-10 py-5">Ticket ID</th>
+<th class="px-6 py-5">Tipo</th>
+<th class="px-6 py-5">Cliente &amp; Título</th>
+<th class="px-6 py-5">Solicitante</th>
+<th class="px-6 py-5">Status</th>
+<th class="px-6 py-5">Responsável</th>
+<th class="px-10 py-5 text-right">ID Azure</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30" id="tech-list-body">
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4832')">
+                    <td class="px-10 py-5 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4832</td>
+                    <td class="px-6 py-5"><span class="font-mono font-bold text-[10px] text-primary">RTN</span></td>
+                    <td class="px-6 py-5">
+                        <p class="font-bold text-on-surface text-[13px] group-hover:text-primary transition-colors">Cliente A <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> RTN - Validação de novo endpoint de API de Pagamentos</p>
+                    </td>
+                    <td class="px-6 py-5 text-[12px] text-on-surface font-medium">Pessoa 01</td>
+                    <td class="px-6 py-5"><span class="bg-yellow-500/10 text-yellow-600 border-yellow-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM VALIDAÇÃO</span></td>
+                    <td class="px-6 py-5 flex items-center gap-2 pt-0">
+                        <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">MV</div>
+                        <span class="text-[11px] font-semibold">Pessoa 01</span>
+                    </td>
+                    <td class="px-10 py-5 text-right font-label-caps text-primary text-[11px] font-bold">#PENDENTE</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4831')">
+                    <td class="px-10 py-5 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4831</td>
+                    <td class="px-6 py-5"><span class="font-mono font-bold text-[10px] text-blue-400">QST</span></td>
+                    <td class="px-6 py-5">
+                        <p class="font-bold text-on-surface text-[13px] group-hover:text-primary transition-colors">Cliente B <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> QST - Ajuste de permissões em ambiente de Staging</p>
+                    </td>
+                    <td class="px-6 py-5 text-[12px] text-on-surface font-medium">Pessoa 02</td>
+                    <td class="px-6 py-5"><span class="bg-yellow-500/10 text-yellow-600 border-yellow-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM VALIDAÇÃO</span></td>
+                    <td class="px-6 py-5 flex items-center gap-2 pt-0">
+                        <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">AL</div>
+                        <span class="text-[11px] font-semibold">Pessoa 02</span>
+                    </td>
+                    <td class="px-10 py-5 text-right font-label-caps text-primary text-[11px] font-bold">#PENDENTE</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4830')">
+                    <td class="px-10 py-5 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4830</td>
+                    <td class="px-6 py-5"><span class="font-mono font-bold text-[10px] text-error">BUG</span></td>
+                    <td class="px-6 py-5">
+                        <p class="font-bold text-on-surface text-[13px] group-hover:text-primary transition-colors">Cliente C <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> BUG - Sincronização de base de dados BI</p>
+                    </td>
+                    <td class="px-6 py-5 text-[12px] text-on-surface font-medium">Pessoa 03</td>
+                    <td class="px-6 py-5"><span class="bg-yellow-500/10 text-yellow-600 border-yellow-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM VALIDAÇÃO</span></td>
+                    <td class="px-6 py-5 flex items-center gap-2 pt-0">
+                        <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">RF</div>
+                        <span class="text-[11px] font-semibold">Pessoa 03</span>
+                    </td>
+                    <td class="px-10 py-5 text-right font-label-caps text-primary text-[11px] font-bold">#PENDENTE</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4829')">
+                    <td class="px-10 py-5 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4829</td>
+                    <td class="px-6 py-5"><span class="font-mono font-bold text-[10px] text-error">BUG</span></td>
+                    <td class="px-6 py-5">
+                        <p class="font-bold text-on-surface text-[13px] group-hover:text-primary transition-colors">Cliente D <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> BUG - Erro na sincronização de API Gateway v2</p>
+                    </td>
+                    <td class="px-6 py-5 text-[12px] text-on-surface font-medium">Pessoa 04</td>
+                    <td class="px-6 py-5"><span class="bg-yellow-500/10 text-yellow-600 border-yellow-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM VALIDAÇÃO</span></td>
+                    <td class="px-6 py-5 flex items-center gap-2 pt-0">
+                        <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">LC</div>
+                        <span class="text-[11px] font-semibold">Pessoa 04</span>
+                    </td>
+                    <td class="px-10 py-5 text-right font-label-caps text-primary text-[11px] font-bold">#AZ-12345</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4825')">
+                    <td class="px-10 py-5 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4825</td>
+                    <td class="px-6 py-5"><span class="font-mono font-bold text-[10px] text-error">BUG</span></td>
+                    <td class="px-6 py-5">
+                        <p class="font-bold text-on-surface text-[13px] group-hover:text-primary transition-colors">Cliente E <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> BUG - Vulnerabilidade crítica detectada em repositório legado</p>
+                    </td>
+                    <td class="px-6 py-5 text-[12px] text-on-surface font-medium">Pessoa 05</td>
+                    <td class="px-6 py-5"><span class="bg-error/10 text-error border-error/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">REJEITADO</span></td>
+                    <td class="px-6 py-5 flex items-center gap-2 pt-0">
+                        <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">AM</div>
+                        <span class="text-[11px] font-semibold">Pessoa 02</span>
+                    </td>
+                    <td class="px-10 py-5 text-right font-label-caps text-primary text-[11px] font-bold">#AZ-98765</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4818')">
+                    <td class="px-10 py-5 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4818</td>
+                    <td class="px-6 py-5"><span class="font-mono font-bold text-[10px] text-primary">RTN</span></td>
+                    <td class="px-6 py-5">
+                        <p class="font-bold text-on-surface text-[13px] group-hover:text-primary transition-colors">Cliente G <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> RTN - Instabilidade no ambiente de Homologação AWS</p>
+                    </td>
+                    <td class="px-6 py-5 text-[12px] text-on-surface font-medium">Sem atribuição</td>
+                    <td class="px-6 py-5"><span class="bg-error/10 text-error border-error/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">REJEITADO</span></td>
+                    <td class="px-6 py-5 flex items-center gap-2 pt-0">
+                        <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">--</div>
+                        <span class="text-[11px] font-semibold">Sem</span>
+                    </td>
+                    <td class="px-10 py-5 text-right font-label-caps text-primary text-[11px] font-bold">#AZ-55221</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4815')">
+                    <td class="px-10 py-5 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4815</td>
+                    <td class="px-6 py-5"><span class="font-mono font-bold text-[10px] text-primary">RTN</span></td>
+                    <td class="px-6 py-5">
+                        <p class="font-bold text-on-surface text-[13px] group-hover:text-primary transition-colors">Cliente H <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> RTN - Migração de banco de dados Oracle para PostgreSQL</p>
+                    </td>
+                    <td class="px-6 py-5 text-[12px] text-on-surface font-medium">Pessoa 06</td>
+                    <td class="px-6 py-5"><span class="bg-primary/10 text-primary border-primary/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">VALIDADO</span></td>
+                    <td class="px-6 py-5 flex items-center gap-2 pt-0">
+                        <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">FJ</div>
+                        <span class="text-[11px] font-semibold">Pessoa 05</span>
+                    </td>
+                    <td class="px-10 py-5 text-right font-label-caps text-primary text-[11px] font-bold">#AZ-11002</td>
+                </tr>
+            
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('TK-4809')">
+                    <td class="px-10 py-5 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#TK-4809</td>
+                    <td class="px-6 py-5"><span class="font-mono font-bold text-[10px] text-error">BUG</span></td>
+                    <td class="px-6 py-5">
+                        <p class="font-bold text-on-surface text-[13px] group-hover:text-primary transition-colors">Cliente K <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> BUG - Timeout intermitente na autenticação OAuth2</p>
+                    </td>
+                    <td class="px-6 py-5 text-[12px] text-on-surface font-medium">Pessoa 01</td>
+                    <td class="px-6 py-5"><span class="bg-yellow-500/10 text-yellow-600 border-yellow-500/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">EM VALIDAÇÃO</span></td>
+                    <td class="px-6 py-5 flex items-center gap-2 pt-0">
+                        <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">MV</div>
+                        <span class="text-[11px] font-semibold">Pessoa 01</span>
+                    </td>
+                    <td class="px-10 py-5 text-right font-label-caps text-primary text-[11px] font-bold">#AZ-44332</td>
+                </tr>
+            </tbody>
+</table>
+</div>
+</div>
+<!-- Tech Kanban View -->
+<div class="flex gap-6 overflow-x-auto pb-8 custom-scrollbar items-start hidden-view" id="tech-kanban-container">
+                    <div class="flex-shrink-0 w-[320px] space-y-4">
+                        <div class="flex items-center justify-between px-2 mb-2">
+                            <h3 class="text-label-caps font-bold text-on-surface-variant uppercase">Em Validação</h3>
+                            <span class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant">5</span>
+                        </div>
+                        <div class="space-y-4">
+                            
+                                <div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem] shadow-sm hover:border-primary/50 cursor-pointer transition-all" onclick="openDetail('TK-4832')">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] font-mono text-on-surface-variant">#TK-4832</span>
+                                            <span class="font-mono font-bold text-[10px] text-primary">RTN</span>
+                                        </div>
+                                        <span class="text-[10px] text-primary font-bold">#PENDENTE</span>
+                                    </div>
+                                    <p class="font-bold text-[12px] text-on-surface mb-1">Cliente A</p>
+                                    <p class="text-[11px] text-on-surface-variant line-clamp-2 mb-3">RTN - Validação de novo endpoint de API de Pagamentos</p>
+                                    <div class="flex items-center gap-2 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-3">
+                                        <div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[8px] font-bold">MV</div>
+                                        <span class="font-medium">Pessoa 01</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem] shadow-sm hover:border-primary/50 cursor-pointer transition-all" onclick="openDetail('TK-4831')">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] font-mono text-on-surface-variant">#TK-4831</span>
+                                            <span class="font-mono font-bold text-[10px] text-blue-400">QST</span>
+                                        </div>
+                                        <span class="text-[10px] text-primary font-bold">#PENDENTE</span>
+                                    </div>
+                                    <p class="font-bold text-[12px] text-on-surface mb-1">Cliente B</p>
+                                    <p class="text-[11px] text-on-surface-variant line-clamp-2 mb-3">QST - Ajuste de permissões em ambiente de Staging</p>
+                                    <div class="flex items-center gap-2 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-3">
+                                        <div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[8px] font-bold">AL</div>
+                                        <span class="font-medium">Pessoa 02</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem] shadow-sm hover:border-primary/50 cursor-pointer transition-all" onclick="openDetail('TK-4830')">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] font-mono text-on-surface-variant">#TK-4830</span>
+                                            <span class="font-mono font-bold text-[10px] text-error">BUG</span>
+                                        </div>
+                                        <span class="text-[10px] text-primary font-bold">#PENDENTE</span>
+                                    </div>
+                                    <p class="font-bold text-[12px] text-on-surface mb-1">Cliente C</p>
+                                    <p class="text-[11px] text-on-surface-variant line-clamp-2 mb-3">BUG - Sincronização de base de dados BI</p>
+                                    <div class="flex items-center gap-2 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-3">
+                                        <div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[8px] font-bold">RF</div>
+                                        <span class="font-medium">Pessoa 03</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem] shadow-sm hover:border-primary/50 cursor-pointer transition-all" onclick="openDetail('TK-4829')">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] font-mono text-on-surface-variant">#TK-4829</span>
+                                            <span class="font-mono font-bold text-[10px] text-error">BUG</span>
+                                        </div>
+                                        <span class="text-[10px] text-primary font-bold">#AZ-12345</span>
+                                    </div>
+                                    <p class="font-bold text-[12px] text-on-surface mb-1">Cliente D</p>
+                                    <p class="text-[11px] text-on-surface-variant line-clamp-2 mb-3">BUG - Erro na sincronização de API Gateway v2</p>
+                                    <div class="flex items-center gap-2 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-3">
+                                        <div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[8px] font-bold">LC</div>
+                                        <span class="font-medium">Pessoa 04</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem] shadow-sm hover:border-primary/50 cursor-pointer transition-all" onclick="openDetail('TK-4809')">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] font-mono text-on-surface-variant">#TK-4809</span>
+                                            <span class="font-mono font-bold text-[10px] text-error">BUG</span>
+                                        </div>
+                                        <span class="text-[10px] text-primary font-bold">#AZ-44332</span>
+                                    </div>
+                                    <p class="font-bold text-[12px] text-on-surface mb-1">Cliente K</p>
+                                    <p class="text-[11px] text-on-surface-variant line-clamp-2 mb-3">BUG - Timeout intermitente na autenticação OAuth2</p>
+                                    <div class="flex items-center gap-2 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-3">
+                                        <div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[8px] font-bold">MV</div>
+                                        <span class="font-medium">Pessoa 01</span>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                
+                    <div class="flex-shrink-0 w-[320px] space-y-4">
+                        <div class="flex items-center justify-between px-2 mb-2">
+                            <h3 class="text-label-caps font-bold text-on-surface-variant uppercase">Validado</h3>
+                            <span class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant">1</span>
+                        </div>
+                        <div class="space-y-4">
+                            
+                                <div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem] shadow-sm hover:border-primary/50 cursor-pointer transition-all" onclick="openDetail('TK-4815')">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] font-mono text-on-surface-variant">#TK-4815</span>
+                                            <span class="font-mono font-bold text-[10px] text-primary">RTN</span>
+                                        </div>
+                                        <span class="text-[10px] text-primary font-bold">#AZ-11002</span>
+                                    </div>
+                                    <p class="font-bold text-[12px] text-on-surface mb-1">Cliente H</p>
+                                    <p class="text-[11px] text-on-surface-variant line-clamp-2 mb-3">RTN - Migração de banco de dados Oracle para PostgreSQL</p>
+                                    <div class="flex items-center gap-2 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-3">
+                                        <div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[8px] font-bold">FJ</div>
+                                        <span class="font-medium">Pessoa 05</span>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                
+                    <div class="flex-shrink-0 w-[320px] space-y-4">
+                        <div class="flex items-center justify-between px-2 mb-2">
+                            <h3 class="text-label-caps font-bold text-on-surface-variant uppercase">Rejeitado</h3>
+                            <span class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant">2</span>
+                        </div>
+                        <div class="space-y-4">
+                            
+                                <div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem] shadow-sm hover:border-primary/50 cursor-pointer transition-all" onclick="openDetail('TK-4825')">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] font-mono text-on-surface-variant">#TK-4825</span>
+                                            <span class="font-mono font-bold text-[10px] text-error">BUG</span>
+                                        </div>
+                                        <span class="text-[10px] text-primary font-bold">#AZ-98765</span>
+                                    </div>
+                                    <p class="font-bold text-[12px] text-on-surface mb-1">Cliente E</p>
+                                    <p class="text-[11px] text-on-surface-variant line-clamp-2 mb-3">BUG - Vulnerabilidade crítica detectada em repositório legado</p>
+                                    <div class="flex items-center gap-2 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-3">
+                                        <div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[8px] font-bold">AM</div>
+                                        <span class="font-medium">Pessoa 02</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem] shadow-sm hover:border-primary/50 cursor-pointer transition-all" onclick="openDetail('TK-4818')">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] font-mono text-on-surface-variant">#TK-4818</span>
+                                            <span class="font-mono font-bold text-[10px] text-primary">RTN</span>
+                                        </div>
+                                        <span class="text-[10px] text-primary font-bold">#AZ-55221</span>
+                                    </div>
+                                    <p class="font-bold text-[12px] text-on-surface mb-1">Cliente G</p>
+                                    <p class="text-[11px] text-on-surface-variant line-clamp-2 mb-3">RTN - Instabilidade no ambiente de Homologação AWS</p>
+                                    <div class="flex items-center gap-2 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-3">
+                                        <div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[8px] font-bold">--</div>
+                                        <span class="font-medium">Sem</span>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+</div>
+</div>
+<!-- TAB: PRODUTO -->
+<div class="tab-pane hidden" id="pane-produto">
+<!-- Header Section -->
+<div class="px-margin-page pt-8 pb-6 border-b border-outline-variant bg-surface">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-[26px] font-bold text-on-surface tracking-tight">Produto</h1>
+<p class="text-on-surface-variant text-[13px] mt-1">Backlog consolidado de sugestões — alterne entre POP XM e POP HUB nas abas.</p>
+</div>
+<div class="flex items-center gap-3">
+</div>
+</div>
+</div>
+<div class="px-margin-page py-6 space-y-6">
+<!-- Product Level Info -->
+<div class="flex flex-wrap items-center gap-4 text-[12.5px] text-on-surface-variant">
+<span class="">POP XM: <span class="font-bold text-on-surface">8</span> sugestões</span>
+<span class="opacity-20 text-on-surface">|</span>
+<span class="">Total no cliente: <span class="font-medium text-on-surface">9</span></span>
+<span class="opacity-20 text-on-surface">|</span>
+<span class="">Última priorização: <span class="font-medium text-on-surface">Hoje, 09:12</span></span>
+<span class="opacity-20 text-on-surface">|</span>
+<span class="">Responsável: <span class="font-medium text-on-surface">CS</span></span>
+</div>
+<!-- Sub-tabs -->
+<div class="flex items-center gap-1 border-b border-outline-variant"><button class="px-4 py-3 text-[12.5px] font-bold border-b-2 uppercase tracking-wider flex items-center gap-2 border-primary text-primary" id="tab-xm-btn" onclick="document.getElementById('xm-content').classList.remove('hidden'); document.getElementById('hub-content').classList.add('hidden'); this.classList.add('border-primary', 'text-primary'); this.classList.remove('border-transparent', 'text-on-surface-variant'); document.getElementById('tab-hub-btn').classList.remove('border-primary', 'text-primary'); document.getElementById('tab-hub-btn').classList.add('border-transparent', 'text-on-surface-variant');">POP XM <span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded-full text-[10px]">8</span></button><button class="px-4 py-3 text-[12.5px] font-bold border-b-2 hover:text-on-surface transition-all uppercase tracking-wider flex items-center gap-2 border-transparent text-on-surface-variant" id="tab-hub-btn" onclick="document.getElementById('hub-content').classList.remove('hidden'); document.getElementById('xm-content').classList.add('hidden'); this.classList.add('border-primary', 'text-primary'); this.classList.remove('border-transparent', 'text-on-surface-variant'); document.getElementById('tab-xm-btn').classList.remove('border-primary', 'text-primary'); document.getElementById('tab-xm-btn').classList.add('border-transparent', 'text-on-surface-variant');">POP HUB <span class="bg-surface-container-high text-on-surface-variant border border-outline-variant px-2 py-0.5 rounded-full text-[10px]">8</span></button></div>
+<!-- Metrics Expandable -->
+<button class="w-full bg-surface border border-outline-variant rounded-[0.25rem] px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low transition-all text-left" id="toggle-prod-metrics" type="button">
+<span class="material-symbols-outlined !text-[18px] text-on-surface-variant transition-transform -rotate-90" id="prod-metrics-chevron" style="transform: rotate(-90deg);">expand_more</span>
+<span class="text-[12px] font-bold text-on-surface uppercase tracking-widest">Indicadores</span>
+<span class="text-[11.5px] text-on-surface-variant">Total 8 · 2 em triagem · 0 em proposta · 3 sem prazo</span>
+<span class="ml-auto text-[11px] font-bold text-primary uppercase tracking-widest" id="prod-metrics-toggle-text">Expandir</span>
+</button>
+<div class="grid-cols-1 md:grid-cols-4 gap-4 animate-in fade-in slide-in-from-top-2 duration-300 hidden" id="prod-metrics-panel">
+<div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem]">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Triagem</p>
+<h3 class="text-2xl font-bold text-on-surface">2</h3>
+</div>
+<div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem]">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Em Proposta</p>
+<h3 class="text-2xl font-bold text-on-surface">0</h3>
+</div>
+<div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem]">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Sem Prazo</p>
+<h3 class="text-2xl font-bold text-on-surface">3</h3>
+</div>
+<div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem]">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Total Sugestões</p>
+<h3 class="text-2xl font-bold text-on-surface">8</h3>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface border border-outline-variant rounded-[0.25rem]">
+<div class="flex items-center gap-3 px-4 py-3">
+<button class="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest border border-outline-variant px-3 py-1.5 rounded-[0.25rem] hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined !text-[16px]">filter_list</span>
+                                Filtros
+                                <span class="material-symbols-outlined !text-[16px]">expand_more</span>
+</button>
+<span class="text-[11px] font-medium text-on-surface-variant uppercase tracking-tight">0 filtros aplicados</span>
+<div class="ml-auto relative w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 !text-[18px] text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-[0.25rem] pl-10 pr-4 py-2 text-[12.5px] focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Buscar por título, produto ou área" type="text">
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface border border-outline-variant rounded-[0.5rem] overflow-hidden shadow-xl" id="xm-content"><div class="overflow-x-auto custom-scrollbar"><table class="w-full text-left border-collapse min-w-[1200px]"><thead><tr class="bg-surface-container-low text-[10px] font-bold uppercase tracking-widest text-on-surface-variant border-b border-outline-variant"><th class="w-10 px-4 py-4"></th><th class="w-24 px-4 py-4">Prio. Cliente</th><th class="px-4 py-4">Título</th><th class="px-4 py-4">Área do produto</th><th class="px-4 py-4">Caminho</th><th class="px-4 py-4">Status</th><th class="w-32 px-4 py-4">Criado em</th><th class="w-32 px-4 py-4">Atualização</th><th class="w-10 px-4 py-4"></th></tr></thead><tbody class="divide-y divide-outline-variant/30"><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#1</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Filtro para indicadores do tipo lista</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">S-001</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">Indicadores</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border bg-blue-500/10 text-blue-400 border-blue-500/20 uppercase tracking-tight">Pedido de proposta comercial</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-purple-500/20 bg-purple-500/10 text-purple-400 px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>Em avaliação Produto + Tech</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#5</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Dashboards em Tempo Real para Operações</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">S-005</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">Real-time</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border border-outline-variant bg-surface-container text-on-surface-variant uppercase tracking-tight">Sugestão sem prazo</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-purple-500/20 bg-purple-500/10 text-purple-400 px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>Design Conceitual</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#6</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Módulo de Exportação em Massa de Dados Brutos</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">S-006</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">Data</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border bg-blue-500/10 text-blue-400 border-blue-500/20 uppercase tracking-tight">Pedido de proposta comercial</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-orange-500/20 bg-orange-500/10 text-orange-400 px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>Planejado</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#7</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Integração com API de Autenticação Centralizada</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">S-007</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">Security</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border bg-blue-500/10 text-blue-400 border-blue-500/20 uppercase tracking-tight">Pedido de proposta comercial</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 text-primary px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>Em Desenvolvimento</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#8</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Interface de Configuração de Regras de Negócio</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">S-008</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">Config</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border border-outline-variant bg-surface-container text-on-surface-variant uppercase tracking-tight">Sugestão sem prazo</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-outline-variant bg-surface-container-high text-on-surface-variant px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>Aguardando Escopo</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">27/06/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr></tbody></table></div></div><div class="bg-surface border border-outline-variant rounded-[0.5rem] overflow-hidden shadow-xl hidden" id="hub-content"><div class="overflow-x-auto custom-scrollbar"><table class="w-full text-left border-collapse min-w-[1200px]"><thead><tr class="bg-surface-container-low text-[10px] font-bold uppercase tracking-widest text-on-surface-variant border-b border-outline-variant"><th class="w-10 px-4 py-4"></th><th class="w-24 px-4 py-4">Prio. Cliente</th><th class="px-4 py-4">Título</th><th class="px-4 py-4">Área do produto</th><th class="px-4 py-4">Caminho</th><th class="px-4 py-4">Status</th><th class="w-32 px-4 py-4">Criado em</th><th class="w-32 px-4 py-4">Atualização</th><th class="w-10 px-4 py-4"></th></tr></thead><tbody class="divide-y divide-outline-variant/30"><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#1</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Integração Nativa com Slack</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">H-001</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">API</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border bg-blue-500/10 text-blue-400 border-blue-500/20 uppercase tracking-tight">Pedido de proposta comercial</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 text-primary px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>EM DESENV.</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">12/05/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">Hoje</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#2</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Dashboard de Churn Predictivo</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">H-002</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">Analytics</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border border-outline-variant bg-surface-container text-on-surface-variant uppercase tracking-tight">Sugestão sem prazo</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-teal-500/20 bg-teal-500/10 text-teal-400 px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>EM TESTE</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">15/05/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">Ontem</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#3</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Exportação de Relatórios Customizados</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">H-003</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">UX</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border bg-blue-500/10 text-blue-400 border-blue-500/20 uppercase tracking-tight">Pedido de proposta comercial</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-orange-500/20 bg-orange-500/10 text-orange-400 px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>PLANEJADO</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">20/05/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">22/05/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#4</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Autenticação via SSO/SAML</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">H-004</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">Security</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border border-outline-variant bg-surface-container text-on-surface-variant uppercase tracking-tight">Sugestão sem prazo</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-purple-500/20 bg-purple-500/10 text-purple-400 px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>DESIGN</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">25/05/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">26/05/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#5</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Refatoração de API de Webhooks</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">H-005</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">API</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border bg-blue-500/10 text-blue-400 border-blue-500/20 uppercase tracking-tight">Pedido de proposta comercial</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 text-primary px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>EM DESENV.</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">28/05/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">Hoje</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#6</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Módulo de Treinamento IA</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">H-006</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">Analytics</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border border-outline-variant bg-surface-container text-on-surface-variant uppercase tracking-tight">Sugestão sem prazo</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-orange-500/20 bg-orange-500/10 text-orange-400 px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>PLANEJADO</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">01/06/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">02/06/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#7</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Suporte a Modo Offline Mobile</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">H-007</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">Mobile</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border bg-blue-500/10 text-blue-400 border-blue-500/20 uppercase tracking-tight">Pedido de proposta comercial</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-teal-500/20 bg-teal-500/10 text-teal-400 px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>EM TESTE</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">05/06/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">06/06/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr><tr class="group hover:bg-surface-container-low transition-colors cursor-pointer"><td class="px-4 py-4 text-center"><span class="material-symbols-outlined drag-handle !text-[18px]">drag_indicator</span></td><td class="px-4 py-4"><span class="inline-flex items-center justify-center min-w-[44px] h-7 px-2 rounded bg-on-surface text-surface text-[13px] font-bold">#8</span></td><td class="px-4 py-4"><div class="flex flex-col"><span class="text-[13.5px] font-bold text-on-surface group-hover:text-primary transition-colors">Redesign de Fluxo de Checkout</span><span class="text-[11px] font-mono text-on-surface-variant mt-0.5 opacity-60">H-008</span></div></td><td class="px-4 py-4 text-[12.5px] text-on-surface-variant">UX</td><td class="px-4 py-4"><span class="inline-block text-[11px] font-bold px-2 py-1 rounded border border-outline-variant bg-surface-container text-on-surface-variant uppercase tracking-tight">Sugestão sem prazo</span></td><td class="px-4 py-4"><span class="inline-flex items-center gap-1.5 border border-purple-500/20 bg-purple-500/10 text-purple-400 px-2 py-1 rounded-full text-[11px] font-bold uppercase"><span class="w-1.5 h-1.5 rounded-full bg-current"></span>DESIGN</span></td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">10/06/2024</td><td class="px-4 py-4 text-[12px] text-on-surface-variant font-medium">11/06/2024</td><td class="px-4 py-4 text-right"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high"><span class="material-symbols-outlined !text-[18px]">more_horiz</span></button></td></tr></tbody></table></div></div>
+<div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-on-surface-variant/60">
+</div>
+</div>
+</div>
+<!-- TAB: BI Placeholder -->
+<div class="tab-pane hidden p-20 text-center" id="pane-bi">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant/20 mb-4">construction</span>
+<h2 class="text-headline-md">Em breve</h2>
+<p class="text-on-surface-variant">Esta visualização está sendo preparada.</p>
+</div>
+</div>
+<!-- Global Footer -->
+</main>
+<script>
+        const ticketsData = [
+            { id: 'TK-4832', type: 'RTN', sector: 'Tecnologia', client: 'Cliente A', title: 'Validação de novo endpoint de API de Pagamentos', area: 'Tecnologia / Backend', status: 'Em Análise', techStatus: 'Em Validação', user: 'Pessoa 01', initials: 'MV', priority: 'Média', time: '5 min', azureId: 'PENDENTE', account: 'Conta demonstrativa 01', xmId: 'DEMO-000', desc: 'Necessário validar a documentação e os limites de taxa para o novo endpoint de liquidação instantânea.' },
+            { id: 'TK-4831', type: 'QST', sector: 'Tecnologia', client: 'Cliente B', title: 'Ajuste de permissões em ambiente de Staging', area: 'Tecnologia / DevOps', status: 'Em Análise', techStatus: 'Em Validação', user: 'Pessoa 02', initials: 'AL', priority: 'Alta', time: '10 min', azureId: 'PENDENTE', account: 'Conta demonstrativa 02', xmId: 'DEMO-000', desc: 'Solicitação de acesso root temporário para deploy de infraestrutura via Terraform no ambiente de homologação.' },
+            { id: 'TK-4830', type: 'BUG', sector: 'Tecnologia', client: 'Cliente C', title: 'Sincronização de base de dados BI', area: 'Tecnologia / Dados', status: 'Em Análise', techStatus: 'Em Validação', user: 'Pessoa 03', initials: 'RF', priority: 'Baixa', time: '15 min', azureId: 'PENDENTE', account: 'Conta demonstrativa 03', xmId: 'DEMO-000', desc: 'Falha detectada no Job noturno de ETL. O banco de réplica não está refletindo as mudanças do core banking.' },
+            { id: 'TK-4829', type: 'BUG', sector: 'Tecnologia', client: 'Cliente D', title: 'Erro na sincronização de API Gateway v2', area: 'Infraestrutura / Cloud', status: 'Em Análise', techStatus: 'Em Validação', user: 'Pessoa 04', initials: 'LC', priority: 'Média', time: '12 min', azureId: 'AZ-12345', account: 'Conta demonstrativa 04', xmId: 'DEMO-000', desc: 'Ocorreu uma falha intermitente na autenticação via OAuth2 durante o pico de tráfego.' },
+            { id: 'TK-4825', type: 'BUG', sector: 'Tecnologia', client: 'Cliente E', title: 'Vulnerabilidade crítica detectada em repositório legado', area: 'Segurança / DevOps', status: 'Reprovado', techStatus: 'Rejeitado', user: 'Pessoa 05', initials: 'AM', priority: 'Crítica', time: '45 min', azureId: 'AZ-98765', account: 'Conta demonstrativa 05', xmId: 'DEMO-000', desc: 'Analise estática de código identificou credenciais expostas em um repositório legado.' },
+            { id: 'TK-4820', type: 'QST', sector: 'BI', client: 'Cliente F', title: 'Solicitação de novo dashboard de retenção LTV', area: 'Produto / BI', status: 'Em Progresso', user: 'Pessoa 03', initials: 'RF', priority: 'Baixa', time: '2 horas', account: 'Conta demonstrativa 06', xmId: 'DEMO-000', desc: 'Time de CRM solicita visualização do LTV por cohort de 12 meses.' },
+            { id: 'TK-4818', type: 'RTN', sector: 'Tecnologia', client: 'Cliente G', title: 'Instabilidade no ambiente de Homologação AWS', area: 'Infraestrutura / Cloud', status: 'Novo', techStatus: 'Rejeitado', user: 'Sem atribuição', initials: '--', priority: 'Alta', time: '3 horas', azureId: 'AZ-55221', account: 'Conta demonstrativa 07', xmId: 'DEMO-000', desc: 'Instâncias EC2 em homologação estão reiniciando aleatoriamente.' },
+            { id: 'TK-4815', type: 'RTN', sector: 'Tecnologia', client: 'Cliente H', title: 'Migração de banco de dados Oracle para PostgreSQL', area: 'Dados / DB Ops', status: 'Em Análise', techStatus: 'Validado', user: 'Pessoa 06', initials: 'FJ', priority: 'Alta', time: '5 horas', azureId: 'AZ-11002', account: 'Conta demonstrativa 08', xmId: 'DEMO-000', desc: 'Planejamento da migração do banco de dados principal de geoprocessamento.' },
+            { id: 'TK-4812', type: 'RTN', sector: 'Produto', client: 'Cliente I', title: 'Ajuste de workflow no módulo de aprovações', area: 'Configuração', status: 'Em Progresso', user: 'Pessoa 07', initials: 'JS', priority: 'Média', time: '6 horas', account: 'Conta demonstrativa 09', xmId: 'DEMO-000', desc: 'O fluxo atual de aprovação multinível está travando.' },
+            { id: 'TK-4810', type: 'QST', sector: 'BI', client: 'Cliente J', title: 'Extração mensal de logs de acesso de usuários', area: 'Relatórios', status: 'Novo', user: 'Sem atribuição', initials: '--', priority: 'Baixa', time: '8 horas', account: 'Conta demonstrativa 10', xmId: 'DEMO-000', desc: 'Compliance solicita extração manual dos logs de auditoria.' },
+            { id: 'TK-4809', type: 'BUG', sector: 'Tecnologia', client: 'Cliente K', title: 'Timeout intermitente na autenticação OAuth2', area: 'Sistemas', status: 'Em Análise', techStatus: 'Em Validação', user: 'Pessoa 01', initials: 'MV', priority: 'Alta', time: '10 horas', azureId: 'AZ-44332', account: 'Conta demonstrativa 11', xmId: 'DEMO-000', desc: 'Interrupções frequentes no login via API externa.' }
+        ];
+
+        function getStatusBadge(status) {
+            const styles = {
+                'Em Análise': 'bg-blue-500/10 text-blue-600 dark:text-blue-500 border-blue-500/30',
+                'Reprovado': 'bg-error/10 text-error border-error/30',
+                'Em Progresso': 'bg-primary/10 text-primary border-primary/30',
+                'Novo': 'bg-on-surface-variant/10 text-on-surface-variant border-outline-variant',
+                'Em Validação': 'bg-yellow-500/10 text-yellow-600 border-yellow-500/30',
+                'Validado': 'bg-primary/10 text-primary border-primary/30',
+                'Rejeitado': 'bg-error/10 text-error border-error/30'
+            };
+            const label = status.toUpperCase();
+            return `<span class="${styles[status] || styles['Novo']} px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border inline-block text-center shadow-sm whitespace-nowrap">${label}</span>`;
+        }
+
+        function getSectorBadge(sector) {
+            const styles = {
+                'Tecnologia': 'text-primary bg-primary/5',
+                'Produto': 'text-tertiary bg-tertiary/10',
+                'BI': 'text-secondary-fixed-dim bg-secondary-fixed-dim/10'
+            };
+            return `<span class="font-label-caps text-[10px] px-2 py-0.5 rounded ${styles[sector] || 'bg-surface-container-high text-on-surface-variant'}">${sector.toUpperCase()}</span>`;
+        }
+
+        function getPriorityDot(priority) {
+            const colors = { 'Crítica': '#ffb4ab', 'Alta': '#E67E22', 'Média': '#D9B700', 'Baixa': '#4ae183' };
+            const color = colors[priority] || '#869486';
+            return `<span class="flex items-center gap-2 font-bold"><span class="w-1.5 h-1.5 rounded-full" style="background-color: ${color};"></span><span class="text-[10px] uppercase tracking-tighter" style="color: ${color}">${priority}</span></span>`;
+        }
+
+        function getTypeBadge(type) {
+            const colors = { 'QST': 'text-blue-400', 'RTN': 'text-primary', 'BUG': 'text-error' };
+            return `<span class="font-mono font-bold text-[10px] ${colors[type] || 'text-on-surface-variant'}">${type}</span>`;
+        }
+
+        // Validation Cycle Logic
+        const validationStates = [
+            { label: 'Em Validação', icon: 'hourglass_empty', class: 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20' },
+            { label: 'Validado', icon: 'verified', class: 'bg-primary/10 text-primary border-primary/20' },
+            { label: 'Rejeitado', icon: 'cancel', class: 'bg-error/10 text-error border-error/20' }
+        ];
+
+        window.cycleValidationState = function(btn) {
+            const currentLabel = document.getElementById('validation-label').innerText;
+            let currentIndex = validationStates.findIndex(s => s.label.toUpperCase() === currentLabel.toUpperCase());
+            
+            let nextIndex = (currentIndex + 1) % validationStates.length;
+            const nextState = validationStates[nextIndex];
+
+            updateValidationButtonUI(nextState);
+            
+            // Update data object
+            const activeId = document.getElementById('detail-id').innerText.replace('#', '');
+            const tIndex = ticketsData.findIndex(x => x.id === activeId);
+            if(tIndex > -1) {
+                ticketsData[tIndex].techStatus = nextState.label;
+                renderTechList();
+                renderTechKanban();
+            }
+        };
+
+        function updateValidationButtonUI(state) {
+            const btn = document.getElementById('validation-status-btn');
+            const label = document.getElementById('validation-label');
+            const icon = document.getElementById('validation-icon');
+            
+            btn.className = `flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-[11px] uppercase tracking-widest transition-all ${state.class} shadow-sm`;
+            label.innerText = state.label.toUpperCase();
+            icon.innerText = state.icon;
+        }
+
+        window.openDetail = function(id) {
+            const t = ticketsData.find(x => x.id === id) || ticketsData[0];
+            document.getElementById('detail-id').innerText = '#' + t.id;
+            document.getElementById('detail-title').innerText = `${t.type} - ${t.title}`.toUpperCase();
+            document.getElementById('detail-client').innerText = t.client;
+            document.getElementById('detail-responsible').innerText = t.user;
+            document.getElementById('detail-initials').innerText = t.initials;
+            document.getElementById('detail-xm-id').innerText = t.xmId || 'N/A';
+            document.getElementById('detail-account').innerText = t.account || 'N/A';
+            document.getElementById('detail-azure-id').innerText = t.azureId ? (t.azureId === 'PENDENTE' ? '--' : '#' + t.azureId) : '--';
+            document.getElementById('detail-desc').innerText = t.desc || 'Sem descrição detalhada.';
+            
+            const badgeContainer = document.getElementById('detail-sector-badge-container');
+            badgeContainer.innerHTML = getSectorBadge(t.sector);
+
+            // Initial set based on data
+            const currentTechStatus = t.techStatus || 'Em Validação';
+            const state = validationStates.find(s => s.label.toLowerCase() === currentTechStatus.toLowerCase()) || validationStates[0];
+            updateValidationButtonUI(state);
+
+            document.getElementById('ticket-detail-panel').classList.add('active');
+        };
+
+        window.closeDetail = function() {
+            document.getElementById('ticket-detail-panel').classList.remove('active');
+        };
+
+        function renderList() {
+            const listBody = document.getElementById('tickets-list-body');
+            if(!listBody) return;
+            listBody.innerHTML = ticketsData.map(t => `
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('${t.id}')">
+                    <td class="px-10 py-4 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#${t.id}</td>
+                    <td class="px-6 py-4">${getSectorBadge(t.sector)}</td>
+                    <td class="px-6 py-4">${getTypeBadge(t.type)}</td>
+                    <td class="px-6 py-4">
+                        <p class="font-bold truncate-1 text-on-surface text-[13px] group-hover:text-primary transition-colors">
+                            ${t.client} <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> ${t.type} - ${t.title}
+                        </p>
+                        <p class="text-[9px] text-on-surface-variant uppercase tracking-[0.15em] font-bold opacity-70 mt-1">${t.area}</p>
+                    </td>
+                    <td class="px-6 py-4">${getStatusBadge(t.status)}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-7 h-7 rounded-[0.25rem] bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold border border-primary/20">${t.initials}</div>
+                            <span class="font-semibold text-on-surface text-[11px] whitespace-nowrap">${t.user}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">${getPriorityDot(t.priority)}</td>
+                    <td class="px-10 py-4 text-right text-on-surface-variant text-[11px] font-bold opacity-70">${t.time}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderKanban() {
+            const cols = { 'Novo': 'kanban-novo', 'Em Análise': 'kanban-analise', 'Em Progresso': 'kanban-progresso' };
+            const counts = { 'Novo': 0, 'Em Análise': 0, 'Em Progresso': 0 };
+
+            Object.values(cols).forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.innerHTML = '';
+            });
+            
+            ticketsData.forEach(t => {
+                const colId = cols[t.status];
+                const el = document.getElementById(colId);
+                if (!el) return;
+                
+                counts[t.status]++;
+                const card = document.createElement('div');
+                card.className = "bg-surface border border-outline-variant p-5 rounded-[0.5rem] shadow-sm hover:shadow-xl hover:border-primary/40 cursor-pointer transition-all";
+                card.onclick = () => openDetail(t.id);
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-[10px] font-label-caps text-on-surface-variant font-bold opacity-60">#${t.id}</span>
+                            <div class="flex gap-2">
+                                ${getSectorBadge(t.sector)}
+                                ${getTypeBadge(t.type)}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-bold text-[13px] text-on-surface truncate">${t.client}</p>
+                    <p class="text-[12px] text-on-surface-variant font-medium mt-1 line-clamp-2">${t.type} - ${t.title}</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">${t.initials}</div>
+                            <span class="text-[11px] font-bold">${t.user.split(' ')[0]}</span>
+                        </div>
+                        <span class="text-[10px] text-on-surface-variant">${t.time}</span>
+                    </div>
+                `;
+                el.appendChild(card);
+            });
+
+            if(document.getElementById('count-novo')) document.getElementById('count-novo').innerText = counts['Novo'];
+            if(document.getElementById('count-analise')) document.getElementById('count-analise').innerText = counts['Em Análise'];
+            if(document.getElementById('count-progresso')) document.getElementById('count-progresso').innerText = counts['Em Progresso'];
+        }
+
+        function renderTechList() {
+            const techBody = document.getElementById('tech-list-body');
+            if(!techBody) return;
+            techBody.innerHTML = ticketsData.filter(t => t.sector === 'Tecnologia').map(t => `
+                <tr class="ticket-row group hover:bg-surface-container-low transition-all cursor-pointer" onclick="openDetail('${t.id}')">
+                    <td class="px-10 py-5 font-label-caps text-on-surface-variant text-[11px] font-bold opacity-60">#${t.id}</td>
+                    <td class="px-6 py-5">${getTypeBadge(t.type)}</td>
+                    <td class="px-6 py-5">
+                        <p class="font-bold text-on-surface text-[13px] group-hover:text-primary transition-colors">${t.client} <span class="mx-1.5 text-on-surface-variant/30 font-normal">/</span> ${t.type} - ${t.title}</p>
+                    </td>
+                    <td class="px-6 py-5 text-[12px] text-on-surface font-medium">${t.user}</td>
+                    <td class="px-6 py-5">${getStatusBadge(t.techStatus || 'Em Validação')}</td>
+                    <td class="px-6 py-5 flex items-center gap-2 pt-0">
+                        <div class="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">${t.initials}</div>
+                        <span class="text-[11px] font-semibold">${t.user.split(' ')[0]}</span>
+                    </td>
+                    <td class="px-10 py-5 text-right font-label-caps text-primary text-[11px] font-bold">#${t.azureId || 'PENDENTE'}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderTechKanban() {
+            const cols = { 
+                'Em Validação': 'Em Validação', 
+                'Validado': 'Validado',
+                'Rejeitado': 'Rejeitado'
+            };
+            const container = document.getElementById('tech-kanban-container');
+            if(!container) return;
+            
+            container.innerHTML = Object.entries(cols).map(([key, label]) => {
+                const tickets = ticketsData.filter(t => t.sector === 'Tecnologia' && (t.techStatus || 'Em Validação') === key);
+                
+                return `
+                    <div class="flex-shrink-0 w-[320px] space-y-4">
+                        <div class="flex items-center justify-between px-2 mb-2">
+                            <h3 class="text-label-caps font-bold text-on-surface-variant uppercase">${label}</h3>
+                            <span class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant">${tickets.length}</span>
+                        </div>
+                        <div class="space-y-4">
+                            ${tickets.map(t => `
+                                <div class="bg-surface border border-outline-variant p-4 rounded-[0.25rem] shadow-sm hover:border-primary/50 cursor-pointer transition-all" onclick="openDetail('${t.id}')">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] font-mono text-on-surface-variant">#${t.id}</span>
+                                            ${getTypeBadge(t.type)}
+                                        </div>
+                                        <span class="text-[10px] text-primary font-bold">#${t.azureId || 'PEND'}</span>
+                                    </div>
+                                    <p class="font-bold text-[12px] text-on-surface mb-1">${t.client}</p>
+                                    <p class="text-[11px] text-on-surface-variant line-clamp-2 mb-3">${t.type} - ${t.title}</p>
+                                    <div class="flex items-center gap-2 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-3">
+                                        <div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[8px] font-bold">${t.initials}</div>
+                                        <span class="font-medium">${t.user.split(' ')[0]}</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        window.goToStep = function(step) {
+            document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
+            const targetStep = document.getElementById(`step-${step}`);
+            const targetForm = document.getElementById(`step-form-${step}`);
+            
+            if (targetStep) targetStep.classList.add('active');
+            else if (targetForm) targetForm.classList.add('active');
+            else document.getElementById('step-sector').classList.add('active');
+
+            const title = document.getElementById('flow-title');
+            const subtitle = document.getElementById('flow-subtitle');
+            if(step === 'tecnologia') {
+                title.innerText = 'Tecnologia';
+                subtitle.innerText = 'Descreva o incidente técnico';
+            } else if (step === 'produto-hub') {
+                title.innerText = 'Produto';
+                subtitle.innerText = 'Melhorias ou Importações';
+            } else if (step === 'bi') {
+                title.innerText = 'Business Intelligence';
+                subtitle.innerText = 'Requisição de Dados';
+            } else if (step === 'produto-form') {
+                title.innerText = 'Produto';
+                subtitle.innerText = 'Sugestão de Melhoria';
+            } else if (step === 'importacao-massa') {
+                title.innerText = 'Produto';
+                subtitle.innerText = 'Importação em Massa';
+            } else {
+                title.innerText = 'Novo Ticket';
+                subtitle.innerText = 'Selecione o setor responsável';
+            }
+        };
+
+        window.backToSector = function() {
+            document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-sector').classList.add('active');
+            document.getElementById('flow-title').innerText = 'Novo Ticket';
+            document.getElementById('flow-subtitle').innerText = 'Selecione o setor responsável';
+        };
+
+        window.closeFlow = function() {
+            const overlay = document.getElementById('new-ticket-overlay');
+            overlay.classList.remove('active');
+            setTimeout(backToSector, 300);
+        };
+
+        function init() {
+            renderList();
+            renderKanban();
+            renderTechList();
+            renderTechKanban();
+
+            document.querySelectorAll('.sector-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.sector-tab').forEach(t => t.classList.remove('border-primary', 'text-primary'));
+                    document.querySelectorAll('.sector-tab').forEach(t => t.classList.add('border-transparent', 'text-on-surface-variant'));
+                    tab.classList.add('border-primary', 'text-primary');
+                    tab.classList.remove('border-transparent', 'text-on-surface-variant');
+
+                    document.querySelectorAll('.tab-pane').forEach(p => p.classList.add('hidden'));
+                    const target = tab.dataset.tab;
+                    if (target === 'solicitacoes') document.getElementById('pane-solicitacoes').classList.remove('hidden');
+                    else if (target === 'tecnologia') document.getElementById('pane-tecnologia').classList.remove('hidden');
+                    else if (target === 'produto') document.getElementById('pane-produto').classList.remove('hidden');
+                    else document.getElementById('pane-bi').classList.remove('hidden');
+                });
+            });
+
+            document.querySelectorAll('.view-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.view-toggle').forEach(b => {
+                        b.classList.remove('bg-primary/10', 'text-primary', 'shadow-sm');
+                        b.classList.add('text-on-surface-variant');
+                    });
+                    btn.classList.add('bg-primary/10', 'text-primary', 'shadow-sm');
+                    const view = btn.dataset.view;
+                    if (view === 'list') {
+                        document.getElementById('view-list-container').classList.remove('hidden-view');
+                        document.getElementById('view-kanban-container').classList.add('hidden-view');
+                    } else {
+                        document.getElementById('view-kanban-container').classList.remove('hidden-view');
+                        document.getElementById('view-list-container').classList.add('hidden-view');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.tech-view-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.tech-view-toggle').forEach(b => {
+                        b.classList.remove('bg-primary/10', 'text-primary', 'shadow-sm');
+                        b.classList.add('text-on-surface-variant');
+                    });
+                    btn.classList.add('bg-primary/10', 'text-primary', 'shadow-sm');
+                    const view = btn.dataset.view;
+                    if (view === 'list') {
+                        document.getElementById('tech-list-container').classList.remove('hidden-view');
+                        document.getElementById('tech-kanban-container').classList.add('hidden-view');
+                    } else {
+                        document.getElementById('tech-kanban-container').classList.remove('hidden-view');
+                        document.getElementById('tech-list-container').classList.add('hidden-view');
+                    }
+                });
+            });
+
+            document.getElementById('theme-toggle').addEventListener('click', () => document.documentElement.classList.toggle('dark'));
+            document.getElementById('new-ticket-btn').addEventListener('click', () => {
+                document.getElementById('new-ticket-overlay').classList.add('active');
+            });
+
+            document.getElementById('toggle-metrics').addEventListener('click', function() {
+                const panel = document.getElementById('metrics-panel');
+                const chevron = document.getElementById('metrics-chevron');
+                const isHidden = panel.classList.toggle('hidden');
+                chevron.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+                document.getElementById('metrics-toggle-text').innerText = isHidden ? 'Mostrar Indicadores' : 'Ocultar Indicadores';
+            });
+            
+            document.getElementById('toggle-prod-metrics').addEventListener('click', function() {
+                const panel = document.getElementById('prod-metrics-panel');
+                const chevron = document.getElementById('prod-metrics-chevron');
+                const text = document.getElementById('prod-metrics-toggle-text');
+                
+                const isHidden = panel.classList.toggle('hidden');
+                if (!isHidden) panel.classList.add('grid'); else panel.classList.remove('grid');
+                
+                chevron.style.transform = isHidden ? 'rotate(-90deg)' : 'rotate(0deg)';
+                text.innerText = isHidden ? 'Expandir' : 'Recolher';
+            });
+        }
+
+        init();
+    </script>
+
+
+
+
+</body></html>

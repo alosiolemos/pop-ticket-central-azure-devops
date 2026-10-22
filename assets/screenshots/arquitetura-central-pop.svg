@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="360" viewBox="0 0 1100 360" role="img" aria-labelledby="title desc">
+<title id="title">Central de Tickets POP — arquitetura documentada</title><desc id="desc">Solicitante acompanha no POP. Validação cria item no Azure. Atualizações retornam ao histórico e recebem resumo com Gemini Flash.</desc>
+<rect width="1100" height="360" rx="20" fill="#111a18"/>
+<g font-family="Arial,sans-serif" fill="#e8f4ee"><text x="35" y="43" font-size="25" font-weight="bold">Central de Tickets POP</text><text x="35" y="70" font-size="14" fill="#a6c6b8">Fluxo documentado da entrega · representação de arquitetura</text></g>
+<g fill="#17382a" stroke="#43d98a" stroke-width="2"><rect x="35" y="115" width="180" height="95" rx="12"/><rect x="270" y="115" width="210" height="95" rx="12"/><rect x="535" y="115" width="210" height="95" rx="12"/><rect x="800" y="115" width="265" height="95" rx="12"/></g>
+<g fill="#fff" text-anchor="middle" font-family="Arial,sans-serif" font-size="17"><text x="125" y="150">Solicitante / POP</text><text x="125" y="179" font-size="13">Abertura e acompanhamento</text><text x="375" y="150">Validação independente</text><text x="375" y="179" font-size="13">Criação única do item</text><text x="640" y="150">Azure DevOps</text><text x="640" y="179" font-size="13">Execução técnica</text><text x="932" y="150">API e webhooks</text><text x="932" y="179" font-size="13">Comentários, anexos e estados</text></g>
+<g stroke="#43d98a" stroke-width="3" fill="none"><path d="M215 162h45m-9-7 9 7-9 7M480 162h45m-9-7 9 7-9 7M745 162h45m-9-7 9 7-9 7M932 215v57H125v-51m-7 9 7-9 7 9"/></g>
+<rect x="300" y="248" width="500" height="49" rx="10" fill="#245440"/>
+<text x="550" y="279" fill="#fff" text-anchor="middle" font-family="Arial,sans-serif" font-size="16">Histórico + notificações + resumos com Gemini Flash</text>
+<text x="35" y="333" fill="#a6c6b8" font-family="Arial,sans-serif" font-size="13">Protótipo disponível em HTML/CSS/JavaScript. Backend e credenciais não incluídos.</text></svg>
