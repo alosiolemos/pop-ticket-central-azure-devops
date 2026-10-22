@@ -1,5 +1,7 @@
 # Central de Tickets POP | Azure DevOps + IA
 
+![Central de Tickets POP](assets/screenshots/central-tickets-pop.png)
+
 Desenvolvi esta central em conjunto com a diretoria para organizar a abertura, classificação e acompanhamento de demandas de Operações, Tecnologia e Produto. O POP passou a concentrar a experiência do solicitante, enquanto o Azure DevOps permaneceu como ferramenta de execução técnica.
 
 A entrega reúne abertura guiada, lista e Kanban, validação técnica, comunicação no ticket, anexos, notificações e resumos com Gemini Flash. A integração foi concebida para manter o contexto entre a solicitação de negócio e o trabalho técnico.
